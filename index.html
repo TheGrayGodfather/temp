@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Result</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script>
+      const roll_no = prompt("Enter your roll number");
+
+      if (roll_no) {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", `http://127.0.0.1:3030/${roll_no}`);
+        xhr.send();
+
+        xhr.onload = function () {
+            const result = JSON.parse(xhr.responseText)
+
+            if(Object.keys(result).length) {
+                alert(`congratulation you scored ${result.result_grade}`)
+            } else {
+                alert('Invalid input')
+            }
+        };
+      }
+    </script>
+  </body>
+</html>
